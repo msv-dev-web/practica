@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WebsocketController!{% endblock %}
+
+{% block body %}
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .unit {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background-color: green;
+            border: 3px solid black;
+            top: 0;
+            left: 0;
+        }
+    </style>
+
+    <div class="unit" id="unit"></div>
+    <script>
+        const bodyElement = document.getElementById('wrapper');
+        const unitElement = document.getElementById('unit');
+
+        unitElement.style.backgroundColor = Math.random() < 0.5 ? 'red' : 'green';
+
+        const ws = new WebSocket("ws://localhost:8000");
+
+        bodyElement.addEventListener('keyup', event => {
+           let top = unitElement.style.top ? unitElement.style.top : 0;
+           let left = unitElement.style.left ? unitElement.style.left : 0;
+           const step = 5;
+
+           if (event.code == 'ArrowUp') {
+               unitElement.style.top = parseInt(top) - step + 'px';
+           } else if (event.code == 'ArrowDown') {
+               unitElement.style.top = parseInt(top) + step + 'px';
+           } else if (event.code == 'ArrowLeft') {
+               unitElement.style.left = parseInt(left) - step + 'px';
+           } else if (event.code == 'ArrowRight') {
+               unitElement.style.left = parseInt(left) + step + 'px';
+           }
+
+           let positionData = {
+               top: unitElement.style.top,
+               left: unitElement.style.left
+
+           };
+
+           ws.send(JSON.stringify(positionData));
+
+        });
+
+        ws.onmessage = response => {
+            let positionData = JSON.parse(response.data);
+            unitElement.style.top = positionData.top;
+            unitElement.style.left = positionData.left;
+        };
+
+    </script>
+{% endblock %}
