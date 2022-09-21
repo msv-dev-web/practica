@@ -13,6 +13,10 @@ RUN wget https://getcomposer.org/installer -O - | php -- --install-dir=/usr/loca
 RUN pecl install xdebug && docker-php-ext-enable xdebug;
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+RUN pecl install xhprof && docker-php-ext-enable xhprof;
+COPY xhprof.ini /usr/local/etc/php/conf.d/xhprof.ini
+
+
 ADD php.ini /usr/local/etc/php/php.ini
 ADD php-fpm.conf /etc/php/php-fpm.d/
 

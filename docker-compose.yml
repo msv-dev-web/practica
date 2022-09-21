@@ -8,7 +8,16 @@ services:
     ]
     environment:
       PHP_IDE_CONFIG: "serverName=Docker"
-    volumes: ['./:/var/www/app:cached']
+    volumes: [
+      './:/var/www/app:cached',
+      './data/xhprof:/tmp/xhprof'
+    ]
+
+#  xhprof-viewer:
+#    image: wodby/xhprof
+#    ports:
+#      - "8090:8080"
+#    volumes: ['./data/xhprof:/mnt/files/private/']
 
   nginx:
     build: ./docker/nginx
