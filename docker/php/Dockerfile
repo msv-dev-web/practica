@@ -18,6 +18,6 @@ ADD php-fpm.conf /etc/php/php-fpm.d/
 
 WORKDIR /var/www/app
 
-EXPOSE 9000
+EXPOSE 9001
 
 CMD ["php-fpm", "-F"]
