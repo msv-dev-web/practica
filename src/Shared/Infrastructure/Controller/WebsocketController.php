@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Controller;
+namespace App\Shared\Infrastructure\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WebsocketController extends AbstractController
 {
-    /**
-     * @Route("/websocket_chat", name="websocket_chat")
-     */
+
+    #[Route('/websocket_chat', name: 'websocket_chat', methods: ['GET'])]
     public function index()
     {
         // XHPROF START
@@ -35,9 +34,7 @@ class WebsocketController extends AbstractController
         return $this->render('websocket/index.html.twig', []);
     }
 
-    /**
-     * @Route("/websocket_game", name="websocket_game")
-     */
+    #[Route('/websocket_game', name: 'websocket_game', methods: ['GET'])]
     public function game()
     {
         return $this->render('websocket/game.html.twig', []);

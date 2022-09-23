@@ -2,7 +2,7 @@
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-use App\Kernel;
+use App\Shared\Infrastructure\Kernel;
 
 
 class KernelLocal extends Kernel
