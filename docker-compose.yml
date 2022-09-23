@@ -13,11 +13,11 @@ services:
       './data/xhprof:/tmp/xhprof'
     ]
 
-#  xhprof-viewer:
-#    image: wodby/xhprof
-#    ports:
-#      - "8090:8080"
-#    volumes: ['./data/xhprof:/mnt/files/private/']
+  xhprof-viewer:
+    image: tuimedia/xhprof-docker:0.9.4
+    ports:
+      - "8090:80"
+    volumes: ['./data/xhprof:/profiles']
 
   nginx:
     build: ./docker/nginx
