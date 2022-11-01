@@ -14,7 +14,7 @@ class MessageSenderTest extends TestCase
     {
         $mailer = new GmailMailer();
         $clientStub = $this->createStub(Client::class);
-        $clientStub->method('getData')->willReturn('Ñîîáùåíèå ïî óìîë÷àíèş');
+        $clientStub->method('getData')->willReturn('Ğ¡Ğ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğµ Ğ¿Ğ¾ ÑƒĞ¼Ğ¾Ğ»Ñ‡Ğ°Ğ½Ğ¸Ñ');
 
         $service = new MessageSender($clientStub, $mailer);
         $service->send();
